@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-color-scale=1.0">
+    <title>Mercado Libre - Miembro de la misión</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f7fa;
+        }
+
+        /* Clean & Professional Typography for Mercado Libre Logo */
+        .brand-logo-text {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 0.88;
+            letter-spacing: -0.04em;
+        }
+    </style>
+</head>
+<body class="flex flex-col h-screen overflow-hidden text-gray-800 select-none">
+
+    <!-- Top Header -->
+    <header class="bg-[#0052cc] text-white h-16 px-4 flex items-center justify-between shadow-md z-20">
+        <div class="flex items-center gap-4">
+            <button class="p-1 text-white hover:bg-blue-700 rounded">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+            <span class="text-sm font-medium">Miembro de la misión</span>
+        </div>
+
+        <!-- Refined Clean Logo Container -->
+        <div class="flex items-center gap-2.5">
+            <div id="ui-logo-box" class="bg-[#ffeb3b] p-1 rounded-lg flex items-center justify-center w-14 h-14 border border-yellow-400 shadow-sm shrink-0 overflow-hidden">
+                <i class="fa-solid fa-handshake text-[#0052cc] text-2xl"></i>
+            </div>
+            <!-- Clean & Professional Mercado Libre Text Header -->
+            <div class="flex flex-col brand-logo-text text-white select-none antialiased">
+                <span class="text-[13px] font-semibold tracking-tight">mercado</span>
+                <span class="text-[14px] font-bold tracking-tight">libre</span>
+            </div>
+        </div>
+
+        <!-- Right User Actions -->
+        <div class="flex items-center gap-5 text-sm">
+            <button onclick="toggleControlPanel()" class="flex items-center gap-1.5 hover:opacity-80 transition-opacity" title="Control Panel ဖွင့်ရန်">
+                <i class="fa-solid fa-gear text-base"></i>
+                <span>Configuración</span>
+            </button>
+            <div class="h-4 w-[1px] bg-blue-400"></div>
+            <button class="relative hover:opacity-80">
+                <i class="fa-regular fa-bell text-lg"></i>
+                <span class="absolute -top-1 -right-1 bg-red-500 w-2 h-2 rounded-full border border-blue-700"></span>
+            </button>
+            <div class="w-8 h-8 bg-white text-[#0052cc] rounded-full flex items-center justify-center font-bold text-sm shadow-sm">
+                <i class="fa-regular fa-user text-base"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex flex-1 relative overflow-hidden">
+        
+        <!-- Left Sidebar -->
+        <aside class="w-60 bg-[#0052cc] text-white flex flex-col py-2 font-light text-xs z-10 select-none overflow-y-auto">
+            <nav class="space-y-0.5">
+                <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-blue-700 transition-colors">
+                    <i class="fa-regular fa-user w-4 text-center text-sm"></i>
+                    <span>Miembro de la misión</span>
+                </a>
+                <a href="#" class="flex items-center justify-between px-4 py-3 hover:bg-blue-700 transition-colors">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-regular fa-square-check w-4 text-center text-sm"></i>
+                        <span>Gestión de tareas</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-blue-700 transition-colors">
+                    <i class="fa-solid fa-tag w-4 text-center text-sm"></i>
+                    <span>Gestión de descuentos</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-blue-700 transition-colors">
+                    <i class="fa-solid fa-rotate-left w-4 text-center text-sm"></i>
+                    <span>Registro de reembolsos</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-blue-700 transition-colors">
+                    <i class="fa-solid fa-store w-4 text-center text-sm"></i>
+                    <span>Lista de negocios</span>
+                </a>
+                <a href="#" class="flex items-center justify-between px-4 py-3 hover:bg-blue-700 transition-colors">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-wallet w-4 text-center text-sm"></i>
+                        <span>Gestión financiera</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                </a>
+                
+                <a href="#" class="flex items-center gap-3 px-4 py-3 bg-white text-[#0052cc] font-medium shadow-sm">
+                    <i class="fa-regular fa-file-lines w-4 text-center text-sm"></i>
+                    <span>Liquidación de solicitudes</span>
+                </a>
+
+                <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-blue-700 transition-colors">
+                    <i class="fa-solid fa-landmark w-4 text-center text-sm"></i>
+                    <span>Centro de liquidación</span>
+                </a>
+                
+                <!-- Transacciones with Exact Match Double Arrow Icon -->
+                <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-blue-700 transition-colors">
+                    <div class="w-4 flex justify-center items-center">
+                        <svg class="w-4 h-4 text-white fill-current" viewBox="0 0 24 24">
+                            <path d="M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z"/>
+                        </svg>
+                    </div>
+                    <span>Transacciones</span>
+                </a>
+
+                <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-blue-700 transition-colors">
+                    <i class="fa-solid fa-chart-column w-4 text-center text-sm"></i>
+                    <span>Estados financieros</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 p-6 overflow-y-auto relative bg-[#f4f6f9]">
+            
+            <!-- User Info Header -->
+            <div class="mb-4">
+                <span class="text-red-600 font-bold text-sm">Usuario: </span>
+                <span id="ui-user-id" class="text-gray-800 font-semibold text-sm">6143815359</span>
+            </div>
+
+            <!-- Table Card -->
+            <div class="bg-white rounded-md shadow-sm border border-gray-100 overflow-hidden">
+                <table class="w-full text-left text-xs border-collapse">
+                    <thead>
+                        <tr class="border-b border-gray-100 bg-[#fafafa] text-gray-500 font-normal">
+                            <th class="p-3.5 text-center w-1/6">Nombre</th>
+                            <th class="p-3.5 text-center w-1/6">Banco</th>
+                            <th class="p-3.5 text-center w-1/4">Cuenta bancaria</th>
+                            <th class="p-3.5 text-center w-1/6">Saldo de la cuenta</th>
+                            <th class="p-3.5 text-center w-1/6">ID de miembro</th>
+                            <th class="p-3.5 text-center w-1/6">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ui-table-body" class="divide-y divide-gray-100 text-gray-700 font-medium">
+                    </tbody>
+                </table>
+
+                <div class="p-3 border-t border-gray-100 flex items-center justify-between text-xs text-gray-600">
+                    <span id="ui-row-count">Total: 1 registros</span>
+                    <div class="flex items-center gap-2">
+                        <span>Filas por página:</span>
+                        <div class="relative">
+                            <select class="border border-gray-200 rounded px-2 py-1 pr-6 bg-white appearance-none focus:outline-none cursor-pointer">
+                                <option>5</option>
+                                <option>10</option>
+                            </select>
+                            <i class="fa-solid fa-caret-down absolute right-2 top-1/2 -translate-y-1/2 text-blue-600 pointer-events-none"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Red System Alert Modal -->
+            <div id="ui-alert-modal" class="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
+                <div class="bg-white rounded-lg shadow-2xl border-l-4 border-l-red-600 w-[500px] p-6 pointer-events-auto relative border border-gray-100">
+                    
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3 text-red-600 font-bold">
+                            <div class="w-6 h-6 rounded-full bg-red-600 text-white flex items-center justify-center text-xs">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <span id="ui-alert-title" class="text-lg">Alerta del sistema</span>
+                        </div>
+                        <button onclick="document.getElementById('ui-alert-modal').classList.add('hidden')" class="text-blue-500 hover:text-blue-700 text-xl">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <p id="ui-alert-desc" class="text-gray-800 text-sm leading-relaxed mb-5 pl-9 pr-2">
+                        Se detectó un error en los datos de su cuenta bancaria. Sus retiros están temporalmente restringidos por motivos de control de riesgos y los fondos se han devuelto a su cuenta de Mercado Libre. Para verificar la titularidad de su cuenta y liberar sus fondos, deberá abonar una comisión de verificación del 45 %.
+                    </p>
+
+                    <div class="flex justify-end">
+                        <button id="ui-alert-btn" class="bg-red-600 hover:bg-red-700 text-white font-medium text-sm px-5 py-2 rounded shadow-sm transition-colors">
+                            Ver detalles
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Live Control Panel Drawer -->
+    <div id="control-panel" class="hidden fixed top-0 right-0 h-full bg-gray-900 text-white p-6 shadow-2xl border-l border-gray-700 w-96 overflow-y-auto text-xs space-y-5 z-50">
+        <div class="flex items-center justify-between border-b border-gray-700 pb-3">
+            <h2 class="font-bold text-yellow-400 text-sm flex items-center gap-2">
+                <i class="fa-solid fa-sliders"></i> Live Control Settings
+            </h2>
+            <button onclick="toggleControlPanel()" class="text-gray-400 hover:text-white p-1">
+                <i class="fa-solid fa-xmark text-base"></i>
+            </button>
+        </div>
+
+        <!-- 1. Logo Customization -->
+        <div class="bg-gray-800 p-3.5 rounded-xl border border-gray-700 space-y-3">
+            <div class="flex items-center justify-between">
+                <span class="font-bold text-blue-400">1. LOGO ICON CONTROL</span>
+                <button onclick="resetLogo()" class="text-[10px] text-gray-400 hover:underline">Reset</button>
+            </div>
+            
+            <div>
+                <label class="block text-gray-300 mb-1">Upload Icon File</label>
+                <input type="file" id="input-logo-file" accept="image/*" class="w-full text-xs text-gray-400 file:mr-2 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-500 cursor-pointer" onchange="handleLogoUpload(event)">
+            </div>
+
+            <div>
+                <label class="block text-gray-300 mb-1">Or Icon Image URL</label>
+                <input type="text" id="input-logo-url" placeholder="https://..." class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white focus:outline-none focus:border-yellow-400" oninput="handleLogoUrlInput(this.value)">
+            </div>
+        </div>
+
+        <!-- 2. Header User Settings -->
+        <div class="bg-gray-800 p-3.5 rounded-xl border border-gray-700 space-y-3">
+            <span class="font-bold text-blue-400">2. USER INFORMATION</span>
+            <div>
+                <label class="block text-gray-300 mb-1">Usuario ID</label>
+                <input type="text" id="input-user-id" value="6143815359" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white focus:outline-none focus:border-yellow-400" oninput="updateDashboard()">
+            </div>
+        </div>
+
+        <!-- 3. Table Data Customization -->
+        <div class="bg-gray-800 p-3.5 rounded-xl border border-gray-700 space-y-3">
+            <span class="font-bold text-blue-400">3. TABLE ROW DATA</span>
+            
+            <div class="space-y-2">
+                <div>
+                    <label class="block text-gray-400 mb-0.5">Nombre</label>
+                    <input type="text" id="input-row-nombre" value="Ricardo Yáñez" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white" oninput="updateDashboard()">
+                </div>
+                <div>
+                    <label class="block text-gray-400 mb-0.5">Banco</label>
+                    <input type="text" id="input-row-banco" value="NUBANK" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white" oninput="updateDashboard()">
+                </div>
+                <div>
+                    <label class="block text-gray-400 mb-0.5">Cuenta bancaria</label>
+                    <input type="text" id="input-row-cuenta" value="638180000072194016" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white" oninput="updateDashboard()">
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-gray-400 mb-0.5">Saldo cuenta</label>
+                        <input type="text" id="input-row-saldo" value="63818000" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white" oninput="updateDashboard()">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 mb-0.5">ID miembro</label>
+                        <input type="text" id="input-row-id" value="6143815359" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white" oninput="updateDashboard()">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-gray-400 mb-0.5">Estado Tag Text</label>
+                    <input type="text" id="input-row-estado" value="Fondos devueltos" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white" oninput="updateDashboard()">
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Alert Modal Customization -->
+        <div class="bg-gray-800 p-3.5 rounded-xl border border-gray-700 space-y-3">
+            <div class="flex items-center justify-between">
+                <span class="font-bold text-blue-400">4. RED ALERT POPUP</span>
+                <label class="flex items-center gap-1.5 cursor-pointer">
+                    <input type="checkbox" id="input-alert-show" checked onchange="updateDashboard()" class="rounded bg-gray-900 border-gray-700 text-yellow-400 focus:ring-0">
+                    <span class="text-gray-300 text-xs">Show</span>
+                </label>
+            </div>
+
+            <div>
+                <label class="block text-gray-400 mb-1">Title</label>
+                <input type="text" id="input-alert-title" value="Alerta del sistema" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white" oninput="updateDashboard()">
+            </div>
+
+            <div>
+                <label class="block text-gray-400 mb-1">Message Description</label>
+                <textarea id="input-alert-desc" rows="4" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white" oninput="updateDashboard()">Se detectó un error en los datos de su cuenta bancaria. Sus retiros están temporalmente restringidos por motivos de control de riesgos y los fondos se han devuelto a su cuenta de Mercado Libre. Para verificar la titularidad de su cuenta y liberar sus fondos, deberá abonar una comisión de verificación del 45 %.</textarea>
+            </div>
+
+            <div>
+                <label class="block text-gray-400 mb-1">Button Text</label>
+                <input type="text" id="input-alert-btn" value="Ver detalles" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white" oninput="updateDashboard()">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const defaultLogoHTML = `<i class="fa-solid fa-handshake text-[#0052cc] text-2xl"></i>`;
+
+        function handleLogoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                document.getElementById('input-logo-url').value = '';
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    setLogoImage(e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function handleLogoUrlInput(url) {
+            if (url.trim() !== '') {
+                document.getElementById('input-logo-file').value = '';
+                setLogoImage(url);
+            }
+        }
+
+        function setLogoImage(src) {
+            const container = document.getElementById('ui-logo-box');
+            container.innerHTML = `<img src="${src}" alt="Logo" class="w-full h-full object-contain rounded-md">`;
+        }
+
+        function resetLogo() {
+            document.getElementById('ui-logo-box').innerHTML = defaultLogoHTML;
+            document.getElementById('input-logo-file').value = '';
+            document.getElementById('input-logo-url').value = '';
+        }
+
+        function updateDashboard() {
+            // Update User ID
+            const userId = document.getElementById('input-user-id').value;
+            document.getElementById('ui-user-id').innerText = userId;
+
+            // Update Table Row Data
+            const nombre = document.getElementById('input-row-nombre').value;
+            const banco = document.getElementById('input-row-banco').value;
+            const cuenta = document.getElementById('input-row-cuenta').value;
+            const saldo = document.getElementById('input-row-saldo').value;
+            const idMiembro = document.getElementById('input-row-id').value;
+            const estado = document.getElementById('input-row-estado').value;
+
+            const tbody = document.getElementById('ui-table-body');
+            tbody.innerHTML = `
+                <tr>
+                    <td class="p-4 text-center">${nombre}</td>
+                    <td class="p-4 text-center font-normal">${banco}</td>
+                    <td class="p-4 text-center tracking-wide">${cuenta}</td>
+                    <td class="p-4 text-center">${saldo}</td>
+                    <td class="p-4 text-center">${idMiembro}</td>
+                    <td class="p-4 text-center">
+                        <span class="bg-red-50 text-red-500 px-3 py-1.5 rounded-full text-[11px] font-normal inline-block border border-red-100">
+                            ${estado}
+                        </span>
+                    </td>
+                </tr>
+            `;
+
+            // Update Alert Modal
+            const showAlert = document.getElementById('input-alert-show').checked;
+            const alertModal = document.getElementById('ui-alert-modal');
+            
+            if (showAlert) {
+                alertModal.classList.remove('hidden');
+                document.getElementById('ui-alert-title').innerText = document.getElementById('input-alert-title').value;
+                document.getElementById('ui-alert-desc').innerText = document.getElementById('input-alert-desc').value;
+                document.getElementById('ui-alert-btn').innerText = document.getElementById('input-alert-btn').value;
+            } else {
+                alertModal.classList.add('hidden');
+            }
+        }
+
+        function toggleControlPanel() {
+            const panel = document.getElementById('control-panel');
+            panel.classList.toggle('hidden');
+        }
+
+        // Initialize UI locally on page load
+        updateDashboard();
+    </script>
+</body>
+</html>
