@@ -265,22 +265,22 @@
 
             <!-- Position Controls -->
             <div class="bg-gray-900 p-2.5 rounded border border-gray-700 space-y-2">
-                <span class="text-yellow-400 font-semibold text-[11px] block">Alert Position (အပေါ်/အောက် ရွှေ့ရန်)</span>
+                <span class="text-yellow-400 font-semibold text-[11px] block">Alert Position</span>
                 <div class="grid grid-cols-2 gap-2">
                     <div>
                         <label class="block text-gray-400 text-[10px] mb-0.5">Vertical Alignment</label>
                         <select id="input-alert-valign" onchange="updateAlertModal()" class="w-full bg-gray-800 border border-gray-700 rounded px-2 py-1 text-white text-xs">
-                            <option value="center">Center (အလယ်)</option>
-                            <option value="start">Top (အပေါ်ဆုံး)</option>
-                            <option value="end">Bottom (အောက်ဆုံး)</option>
+                            <option value="center">Center</option>
+                            <option value="start">Top</option>
+                            <option value="end">Bottom</option>
                         </select>
                     </div>
                     <div>
                         <label class="block text-gray-400 text-[10px] mb-0.5">Horizontal Alignment</label>
                         <select id="input-alert-halign" onchange="updateAlertModal()" class="w-full bg-gray-800 border border-gray-700 rounded px-2 py-1 text-white text-xs">
-                            <option value="center">Center (အလယ်)</option>
-                            <option value="start">Left (ဘယ်ဘက်)</option>
-                            <option value="end">Right (ညာဘက်)</option>
+                            <option value="center">Center</option>
+                            <option value="start">Left</option>
+                            <option value="end">Right</option>
                         </select>
                     </div>
                 </div>
@@ -306,7 +306,7 @@
     <script>
         const defaultLogoHTML = `<i class="fa-solid fa-handshake text-[#0052cc] text-2xl"></i>`;
 
-        // Dynamic Table Data State
+        // Dynamic Table Data State (Only 1 Initial Row)
         let tableData = [
             {
                 nombre: "Ricardo Yáñez",
@@ -315,22 +315,6 @@
                 saldo: "63818000",
                 idMiembro: "6143815359",
                 estado: "Fondos devueltos"
-            },
-            {
-                nombre: "Nuevo Usuario",
-                banco: "BANCO",
-                cuenta: "000000000000000000",
-                saldo: "0",
-                idMiembro: "0000000000",
-                estado: "Pendiente"
-            },
-            {
-                nombre: "Nuevo Usuario",
-                banco: "BANCO",
-                cuenta: "000000000000000000",
-                saldo: "0",
-                idMiembro: "0000000000",
-                estado: "Pendiente"
             }
         ];
 
