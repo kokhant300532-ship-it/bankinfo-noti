@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-color-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mercado Libre - Miembro de la misión</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -170,9 +170,9 @@
                 </div>
             </div>
 
-            <!-- Red System Alert Modal -->
-            <div id="ui-alert-modal" class="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
-                <div class="bg-white rounded-lg shadow-2xl border-l-4 border-l-red-600 w-[500px] p-6 pointer-events-auto relative border border-gray-100">
+            <!-- Red System Alert Modal with Dynamic Positioning -->
+            <div id="ui-alert-modal" class="absolute inset-0 flex items-center justify-center pointer-events-none z-30 transition-all duration-200">
+                <div id="ui-alert-box" class="bg-white rounded-lg shadow-2xl border-l-4 border-l-red-600 w-[500px] p-6 pointer-events-auto relative border border-gray-100">
                     
                     <div class="flex items-center justify-between mb-4">
                         <div class="flex items-center gap-3 text-red-600 font-bold">
@@ -236,73 +236,103 @@
             <span class="font-bold text-blue-400">2. USER INFORMATION</span>
             <div>
                 <label class="block text-gray-300 mb-1">Usuario ID</label>
-                <input type="text" id="input-user-id" value="6143815359" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white focus:outline-none focus:border-yellow-400" oninput="updateDashboard()">
+                <input type="text" id="input-user-id" value="6143815359" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white focus:outline-none focus:border-yellow-400" oninput="updateUserId()">
             </div>
         </div>
 
-        <!-- 3. Table Data Customization -->
+        <!-- 3. Dynamic Table Rows Data Customization -->
         <div class="bg-gray-800 p-3.5 rounded-xl border border-gray-700 space-y-3">
-            <span class="font-bold text-blue-400">3. TABLE ROW DATA</span>
-            
-            <div class="space-y-2">
-                <div>
-                    <label class="block text-gray-400 mb-0.5">Nombre</label>
-                    <input type="text" id="input-row-nombre" value="Ricardo Yáñez" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white" oninput="updateDashboard()">
-                </div>
-                <div>
-                    <label class="block text-gray-400 mb-0.5">Banco</label>
-                    <input type="text" id="input-row-banco" value="NUBANK" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white" oninput="updateDashboard()">
-                </div>
-                <div>
-                    <label class="block text-gray-400 mb-0.5">Cuenta bancaria</label>
-                    <input type="text" id="input-row-cuenta" value="638180000072194016" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white" oninput="updateDashboard()">
-                </div>
-                <div class="grid grid-cols-2 gap-2">
-                    <div>
-                        <label class="block text-gray-400 mb-0.5">Saldo cuenta</label>
-                        <input type="text" id="input-row-saldo" value="63818000" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white" oninput="updateDashboard()">
-                    </div>
-                    <div>
-                        <label class="block text-gray-400 mb-0.5">ID miembro</label>
-                        <input type="text" id="input-row-id" value="6143815359" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white" oninput="updateDashboard()">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-gray-400 mb-0.5">Estado Tag Text</label>
-                    <input type="text" id="input-row-estado" value="Fondos devueltos" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white" oninput="updateDashboard()">
-                </div>
+            <div class="flex items-center justify-between">
+                <span class="font-bold text-blue-400">3. TABLE ROWS DATA</span>
+                <button onclick="addNewRow()" class="bg-green-600 hover:bg-green-500 text-white px-2.5 py-1 rounded text-[11px] font-semibold flex items-center gap-1 transition-colors">
+                    <i class="fa-solid fa-plus"></i> Add Row
+                </button>
             </div>
+            
+            <!-- Rows Input Container -->
+            <div id="rows-control-container" class="space-y-3"></div>
         </div>
 
-        <!-- 4. Alert Modal Customization -->
+        <!-- 4. Alert Modal Customization & Position Control -->
         <div class="bg-gray-800 p-3.5 rounded-xl border border-gray-700 space-y-3">
             <div class="flex items-center justify-between">
                 <span class="font-bold text-blue-400">4. RED ALERT POPUP</span>
                 <label class="flex items-center gap-1.5 cursor-pointer">
-                    <input type="checkbox" id="input-alert-show" checked onchange="updateDashboard()" class="rounded bg-gray-900 border-gray-700 text-yellow-400 focus:ring-0">
+                    <input type="checkbox" id="input-alert-show" checked onchange="updateAlertModal()" class="rounded bg-gray-900 border-gray-700 text-yellow-400 focus:ring-0">
                     <span class="text-gray-300 text-xs">Show</span>
                 </label>
             </div>
 
+            <!-- Position Controls -->
+            <div class="bg-gray-900 p-2.5 rounded border border-gray-700 space-y-2">
+                <span class="text-yellow-400 font-semibold text-[11px] block">Alert Position (အပေါ်/အောက် ရွှေ့ရန်)</span>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-gray-400 text-[10px] mb-0.5">Vertical Alignment</label>
+                        <select id="input-alert-valign" onchange="updateAlertModal()" class="w-full bg-gray-800 border border-gray-700 rounded px-2 py-1 text-white text-xs">
+                            <option value="center">Center (အလယ်)</option>
+                            <option value="start">Top (အပေါ်ဆုံး)</option>
+                            <option value="end">Bottom (အောက်ဆုံး)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 text-[10px] mb-0.5">Horizontal Alignment</label>
+                        <select id="input-alert-halign" onchange="updateAlertModal()" class="w-full bg-gray-800 border border-gray-700 rounded px-2 py-1 text-white text-xs">
+                            <option value="center">Center (အလယ်)</option>
+                            <option value="start">Left (ဘယ်ဘက်)</option>
+                            <option value="end">Right (ညာဘက်)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
             <div>
                 <label class="block text-gray-400 mb-1">Title</label>
-                <input type="text" id="input-alert-title" value="Alerta del sistema" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white" oninput="updateDashboard()">
+                <input type="text" id="input-alert-title" value="Alerta del sistema" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white" oninput="updateAlertModal()">
             </div>
 
             <div>
                 <label class="block text-gray-400 mb-1">Message Description</label>
-                <textarea id="input-alert-desc" rows="4" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white" oninput="updateDashboard()">Se detectó un error en los datos de su cuenta bancaria. Sus retiros están temporalmente restringidos por motivos de control de riesgos y los fondos se han devuelto a su cuenta de Mercado Libre. Para verificar la titularidad de su cuenta y liberar sus fondos, deberá abonar una comisión de verificación del 45 %.</textarea>
+                <textarea id="input-alert-desc" rows="4" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white" oninput="updateAlertModal()">Se detectó un error en los datos de su cuenta bancaria. Sus retiros están temporalmente restringidos por motivos de control de riesgos y los fondos se han devuelto a su cuenta de Mercado Libre. Para verificar la titularidad de su cuenta y liberar sus fondos, deberá abonar una comisión de verificación del 45 %.</textarea>
             </div>
 
             <div>
                 <label class="block text-gray-400 mb-1">Button Text</label>
-                <input type="text" id="input-alert-btn" value="Ver detalles" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white" oninput="updateDashboard()">
+                <input type="text" id="input-alert-btn" value="Ver detalles" class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white" oninput="updateAlertModal()">
             </div>
         </div>
     </div>
 
     <script>
         const defaultLogoHTML = `<i class="fa-solid fa-handshake text-[#0052cc] text-2xl"></i>`;
+
+        // Dynamic Table Data State
+        let tableData = [
+            {
+                nombre: "Ricardo Yáñez",
+                banco: "NUBANK",
+                cuenta: "638180000072194016",
+                saldo: "63818000",
+                idMiembro: "6143815359",
+                estado: "Fondos devueltos"
+            },
+            {
+                nombre: "Nuevo Usuario",
+                banco: "BANCO",
+                cuenta: "000000000000000000",
+                saldo: "0",
+                idMiembro: "0000000000",
+                estado: "Pendiente"
+            },
+            {
+                nombre: "Nuevo Usuario",
+                banco: "BANCO",
+                cuenta: "000000000000000000",
+                saldo: "0",
+                idMiembro: "0000000000",
+                estado: "Pendiente"
+            }
+        ];
 
         function handleLogoUpload(event) {
             const file = event.target.files[0];
@@ -334,41 +364,122 @@
             document.getElementById('input-logo-url').value = '';
         }
 
-        function updateDashboard() {
-            // Update User ID
+        function updateUserId() {
             const userId = document.getElementById('input-user-id').value;
             document.getElementById('ui-user-id').innerText = userId;
+        }
 
-            // Update Table Row Data
-            const nombre = document.getElementById('input-row-nombre').value;
-            const banco = document.getElementById('input-row-banco').value;
-            const cuenta = document.getElementById('input-row-cuenta').value;
-            const saldo = document.getElementById('input-row-saldo').value;
-            const idMiembro = document.getElementById('input-row-id').value;
-            const estado = document.getElementById('input-row-estado').value;
+        function renderRowsControl() {
+            const container = document.getElementById('rows-control-container');
+            container.innerHTML = '';
 
+            tableData.forEach((row, index) => {
+                const rowCard = document.createElement('div');
+                rowCard.className = 'bg-gray-900 p-2.5 rounded border border-gray-700 space-y-2 relative';
+                
+                rowCard.innerHTML = `
+                    <div class="flex items-center justify-between border-b border-gray-800 pb-1">
+                        <span class="font-bold text-yellow-400 text-[11px]">ROW #${index + 1}</span>
+                        ${tableData.length > 1 ? `
+                            <button onclick="removeRow(${index})" class="text-red-400 hover:text-red-300 text-[11px] font-semibold flex items-center gap-1">
+                                <i class="fa-solid fa-trash-can"></i> Delete
+                            </button>
+                        ` : ''}
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 text-[10px] mb-0.5">Nombre</label>
+                        <input type="text" value="${row.nombre}" oninput="updateRowData(${index}, 'nombre', this.value)" class="w-full bg-gray-800 border border-gray-700 rounded px-2 py-1 text-white text-xs">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 text-[10px] mb-0.5">Banco</label>
+                        <input type="text" value="${row.banco}" oninput="updateRowData(${index}, 'banco', this.value)" class="w-full bg-gray-800 border border-gray-700 rounded px-2 py-1 text-white text-xs">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 text-[10px] mb-0.5">Cuenta bancaria</label>
+                        <input type="text" value="${row.cuenta}" oninput="updateRowData(${index}, 'cuenta', this.value)" class="w-full bg-gray-800 border border-gray-700 rounded px-2 py-1 text-white text-xs">
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-gray-400 text-[10px] mb-0.5">Saldo cuenta</label>
+                            <input type="text" value="${row.saldo}" oninput="updateRowData(${index}, 'saldo', this.value)" class="w-full bg-gray-800 border border-gray-700 rounded px-2 py-1 text-white text-xs">
+                        </div>
+                        <div>
+                            <label class="block text-gray-400 text-[10px] mb-0.5">ID miembro</label>
+                            <input type="text" value="${row.idMiembro}" oninput="updateRowData(${index}, 'idMiembro', this.value)" class="w-full bg-gray-800 border border-gray-700 rounded px-2 py-1 text-white text-xs">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 text-[10px] mb-0.5">Estado Tag Text</label>
+                        <input type="text" value="${row.estado}" oninput="updateRowData(${index}, 'estado', this.value)" class="w-full bg-gray-800 border border-gray-700 rounded px-2 py-1 text-white text-xs">
+                    </div>
+                `;
+                container.appendChild(rowCard);
+            });
+        }
+
+        function updateRowData(index, field, value) {
+            tableData[index][field] = value;
+            renderTableUI();
+        }
+
+        function addNewRow() {
+            tableData.push({
+                nombre: "Nuevo Usuario",
+                banco: "BANCO",
+                cuenta: "000000000000000000",
+                saldo: "0",
+                idMiembro: "0000000000",
+                estado: "Pendiente"
+            });
+            renderRowsControl();
+            renderTableUI();
+        }
+
+        function removeRow(index) {
+            if (tableData.length > 1) {
+                tableData.splice(index, 1);
+                renderRowsControl();
+                renderTableUI();
+            }
+        }
+
+        function renderTableUI() {
             const tbody = document.getElementById('ui-table-body');
-            tbody.innerHTML = `
-                <tr>
-                    <td class="p-4 text-center">${nombre}</td>
-                    <td class="p-4 text-center font-normal">${banco}</td>
-                    <td class="p-4 text-center tracking-wide">${cuenta}</td>
-                    <td class="p-4 text-center">${saldo}</td>
-                    <td class="p-4 text-center">${idMiembro}</td>
+            tbody.innerHTML = '';
+
+            tableData.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="p-4 text-center">${row.nombre}</td>
+                    <td class="p-4 text-center font-normal">${row.banco}</td>
+                    <td class="p-4 text-center tracking-wide">${row.cuenta}</td>
+                    <td class="p-4 text-center">${row.saldo}</td>
+                    <td class="p-4 text-center">${row.idMiembro}</td>
                     <td class="p-4 text-center">
                         <span class="bg-red-50 text-red-500 px-3 py-1.5 rounded-full text-[11px] font-normal inline-block border border-red-100">
-                            ${estado}
+                            ${row.estado}
                         </span>
                     </td>
-                </tr>
-            `;
+                `;
+                tbody.appendChild(tr);
+            });
 
-            // Update Alert Modal
+            document.getElementById('ui-row-count').innerText = `Total: ${tableData.length} registros`;
+        }
+
+        function updateAlertModal() {
             const showAlert = document.getElementById('input-alert-show').checked;
             const alertModal = document.getElementById('ui-alert-modal');
             
             if (showAlert) {
                 alertModal.classList.remove('hidden');
+                
+                // Position Control Updates
+                const valign = document.getElementById('input-alert-valign').value;
+                const halign = document.getElementById('input-alert-halign').value;
+
+                alertModal.className = `absolute inset-0 flex p-6 pointer-events-none z-30 transition-all duration-200 items-${valign} justify-${halign}`;
+
                 document.getElementById('ui-alert-title').innerText = document.getElementById('input-alert-title').value;
                 document.getElementById('ui-alert-desc').innerText = document.getElementById('input-alert-desc').value;
                 document.getElementById('ui-alert-btn').innerText = document.getElementById('input-alert-btn').value;
@@ -383,7 +494,10 @@
         }
 
         // Initialize UI locally on page load
-        updateDashboard();
+        updateUserId();
+        renderRowsControl();
+        renderTableUI();
+        updateAlertModal();
     </script>
 </body>
 </html>
