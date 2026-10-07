@@ -351,6 +351,13 @@
         function updateUserId() {
             const userId = document.getElementById('input-user-id').value;
             document.getElementById('ui-user-id').innerText = userId;
+            
+            // Sync all row idMiembro values with Usuario ID
+            tableData.forEach(row => {
+                row.idMiembro = userId;
+            });
+            renderRowsControl();
+            renderTableUI();
         }
 
         function renderRowsControl() {
@@ -382,15 +389,9 @@
                         <label class="block text-gray-400 text-[10px] mb-0.5">Cuenta bancaria</label>
                         <input type="text" value="${row.cuenta}" oninput="updateRowData(${index}, 'cuenta', this.value)" class="w-full bg-gray-800 border border-gray-700 rounded px-2 py-1 text-white text-xs">
                     </div>
-                    <div class="grid grid-cols-2 gap-2">
-                        <div>
-                            <label class="block text-gray-400 text-[10px] mb-0.5">Saldo cuenta</label>
-                            <input type="text" value="${row.saldo}" oninput="updateRowData(${index}, 'saldo', this.value)" class="w-full bg-gray-800 border border-gray-700 rounded px-2 py-1 text-white text-xs">
-                        </div>
-                        <div>
-                            <label class="block text-gray-400 text-[10px] mb-0.5">ID miembro</label>
-                            <input type="text" value="${row.idMiembro}" oninput="updateRowData(${index}, 'idMiembro', this.value)" class="w-full bg-gray-800 border border-gray-700 rounded px-2 py-1 text-white text-xs">
-                        </div>
+                    <div>
+                        <label class="block text-gray-400 text-[10px] mb-0.5">Saldo cuenta</label>
+                        <input type="text" value="${row.saldo}" oninput="updateRowData(${index}, 'saldo', this.value)" class="w-full bg-gray-800 border border-gray-700 rounded px-2 py-1 text-white text-xs">
                     </div>
                     <div>
                         <label class="block text-gray-400 text-[10px] mb-0.5">Estado Tag Text</label>
@@ -407,12 +408,13 @@
         }
 
         function addNewRow() {
+            const currentUserId = document.getElementById('input-user-id').value;
             tableData.push({
                 nombre: "Nuevo Usuario",
                 banco: "BANCO",
                 cuenta: "000000000000000000",
                 saldo: "0",
-                idMiembro: "0000000000",
+                idMiembro: currentUserId,
                 estado: "Pendiente"
             });
             renderRowsControl();
