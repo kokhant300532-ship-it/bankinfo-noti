@@ -70,46 +70,55 @@
   <!-- MAIN BODY -->
   <div class="flex flex-1 overflow-hidden">
     
-    <!-- SIDEBAR (Modern Elegant Dark Slate Theme) -->
-    <aside class="w-64 bg-[#1e293b] text-slate-200 flex flex-col justify-between overflow-y-auto shrink-0 shadow-lg border-r border-slate-800">
-      <nav class="py-4 text-xs font-medium space-y-1 px-3">
-        <a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white transition">
-          <i data-lucide="user-check" class="w-4 h-4 text-sky-400"></i>
-          <span>Miembro de la Misión</span>
-        </a>
-        <a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white transition">
-          <i data-lucide="clipboard-list" class="w-4 h-4 text-sky-400"></i>
-          <span>Gestión de Tareas</span>
-        </a>
-        <a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white transition">
-          <i data-lucide="gift" class="w-4 h-4 text-sky-400"></i>
-          <span>Distribución de Bonificaciones</span>
-        </a>
-        <a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white transition">
-          <i data-lucide="rotate-ccw" class="w-4 h-4 text-sky-400"></i>
-          <span>Registro de Reembolsos</span>
-        </a>
-        <a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white transition">
-          <i data-lucide="store" class="w-4 h-4 text-sky-400"></i>
-          <span>Lista de Negocios</span>
+    <!-- SIDEBAR (Dark Theme matching reference image) -->
+    <aside class="w-64 bg-[#0f172a] text-slate-300 flex flex-col justify-between overflow-y-auto shrink-0 border-r border-slate-800">
+      <nav class="py-4 text-xs font-medium space-y-1.5 px-3">
+        
+        <a href="#" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/60 transition">
+          <i data-lucide="user" class="w-4 h-4 text-slate-400"></i>
+          <span>Miembro de la misión</span>
         </a>
 
-        <div class="pt-2">
-          <a href="#" class="flex items-center justify-between px-4 py-3 rounded-xl bg-slate-800 font-bold text-white shadow-2xs border border-slate-700">
+        <a href="#" class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/60 transition">
+          <div class="flex items-center space-x-3">
+            <i data-lucide="check-square" class="w-4 h-4 text-slate-400"></i>
+            <span>Gestión de tareas</span>
+          </div>
+          <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-500"></i>
+        </a>
+
+        <a href="#" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/60 transition">
+          <i data-lucide="tag" class="w-4 h-4 text-slate-400"></i>
+          <span>Gestión de descuentos</span>
+        </a>
+
+        <a href="#" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/60 transition">
+          <i data-lucide="rotate-ccw" class="w-4 h-4 text-slate-400"></i>
+          <span>Registro de reembolsos</span>
+        </a>
+
+        <a href="#" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/60 transition">
+          <i data-lucide="store" class="w-4 h-4 text-slate-400"></i>
+          <span>Lista de negocios</span>
+        </a>
+
+        <div class="pt-1">
+          <a href="#" class="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-800 text-white font-semibold shadow-2xs">
             <div class="flex items-center space-x-3">
               <i data-lucide="wallet" class="w-4 h-4 text-yellow-400"></i>
-              <span>Gestión Financiera</span>
+              <span>Gestión financiera</span>
             </div>
-            <i data-lucide="chevron-up" class="w-4 h-4 text-slate-400"></i>
+            <i data-lucide="chevron-up" class="w-3.5 h-3.5 text-slate-400"></i>
           </a>
           
-          <div class="bg-slate-900/60 backdrop-blur-sm rounded-xl mt-1.5 p-1 text-slate-300 text-xs space-y-0.5 border border-slate-800">
-            <a href="#" class="block py-2.5 px-4 rounded-lg hover:bg-slate-800 hover:text-white transition">Liquidación de Demandas</a>
-            <a href="#" class="block py-2.5 px-4 rounded-lg hover:bg-slate-800 hover:text-white transition">Centro de Liquidación</a>
-            <a href="#" class="block py-2.5 px-4 rounded-lg bg-[#ffe600] text-gray-900 font-bold shadow-2xs">Transaccional</a>
-            <a href="#" class="block py-2.5 px-4 rounded-lg hover:bg-slate-800 hover:text-white transition">Estados Financieros</a>
+          <div class="mt-1.5 space-y-1 pl-2 text-slate-400">
+            <a href="#" class="block py-2 px-3 rounded-lg hover:bg-slate-800/50 transition">Liquidación de demandas</a>
+            <a href="#" class="block py-2 px-3 rounded-lg hover:bg-slate-800/50 transition">Centro de liquidación</a>
+            <a href="#" class="block py-2 px-3 rounded-lg bg-[#ffe600] text-gray-900 font-bold shadow-2xs">Transaccional</a>
+            <a href="#" class="block py-2 px-3 rounded-lg hover:bg-slate-800/50 transition">Estados financieros</a>
           </div>
         </div>
+
       </nav>
     </aside>
 
