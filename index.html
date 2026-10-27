@@ -1,474 +1,415 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mercado Libre - Miembro de la misión</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts Import -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f1f5f9;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mercado Libre - Transaccional Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .editable-cell:hover {
+      background-color: #fef08a;
+      cursor: pointer;
+    }
+    .editable-cell:focus {
+      outline: 2px solid #ca8a04;
+      background-color: #ffffff;
+      border-radius: 4px;
+    }
+    .header-ref-val {
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #334155;
+      line-height: 1rem;
+    }
+  </style>
 </head>
-<body class="flex flex-col h-screen overflow-hidden text-gray-800 select-none">
+<body class="bg-slate-100 font-sans text-slate-800 flex flex-col h-screen overflow-hidden">
 
-    <!-- Top Header -->
-    <header class="bg-[#ffe600] text-gray-900 h-16 px-6 flex items-center justify-between shadow-md z-20 border-b border-yellow-400">
-        <div class="flex items-center gap-4">
-            <button class="p-2 text-gray-800 hover:bg-yellow-400 rounded-xl transition-colors">
-                <i class="fa-solid fa-bars text-lg"></i>
-            </button>
-            <span class="text-sm font-bold tracking-tight">Miembro de la misión</span>
+  <!-- HEADER -->
+  <header class="bg-[#ffe600] text-gray-900 flex items-center justify-between px-6 py-3 shadow-md z-20 border-b border-yellow-400">
+    <div class="flex items-center space-x-4">
+      <button class="p-2 hover:bg-yellow-400 rounded-xl transition text-gray-800">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+      </button>
+      
+      <div id="brandContainer" class="flex items-center space-x-3">
+        <img id="customLogoImg" src="" alt="Logo" class="h-10 w-auto hidden object-contain" />
+
+        <div id="defaultSvgLogo" class="flex items-center">
+          <div class="bg-white p-2 rounded-full border border-yellow-300 shadow-2xs">
+            <i class="fa-solid fa-handshake text-[#2d327d] text-xl"></i>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <!-- Clean Logo Box Container -->
-        <div class="flex items-center justify-center">
-            <div id="ui-logo-box" class="flex items-center justify-center h-10 shrink-0 overflow-hidden">
-                <i class="fa-solid fa-handshake text-[#2d327d] text-2xl"></i>
+    <!-- SEARCH BAR -->
+    <div class="hidden md:flex items-center flex-1 max-w-md mx-8">
+      <div class="relative w-full">
+        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-gray-400">
+          <i data-lucide="search" class="w-4 h-4"></i>
+        </span>
+        <input type="text" id="searchInput" value="4181528326" placeholder="Buscar por ID..." class="w-full bg-white text-gray-800 placeholder-gray-400 text-xs font-semibold rounded-full pl-10 pr-4 py-2.5 border border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 shadow-2xs">
+      </div>
+    </div>
+
+    <div class="flex items-center space-x-4 text-sm font-medium">
+      <button id="openConfigBtn" class="flex items-center space-x-2 bg-white hover:bg-yellow-100 text-gray-800 px-4 py-2 rounded-xl border border-yellow-400 shadow-2xs transition">
+        <i data-lucide="settings" class="w-4 h-4 text-[#2d327d]"></i>
+        <span>Configuración</span>
+      </button>
+      <div class="w-9 h-9 rounded-full border border-yellow-400 overflow-hidden bg-white flex items-center justify-center text-[#2d327d] shadow-2xs">
+        <i data-lucide="user" class="w-5 h-5"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN BODY -->
+  <div class="flex flex-1 overflow-hidden">
+    
+    <!-- SIDEBAR (Modern Elegant Dark Slate Theme) -->
+    <aside class="w-64 bg-[#1e293b] text-slate-200 flex flex-col justify-between overflow-y-auto shrink-0 shadow-lg border-r border-slate-800">
+      <nav class="py-4 text-xs font-medium space-y-1 px-3">
+        <a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white transition">
+          <i data-lucide="user-check" class="w-4 h-4 text-sky-400"></i>
+          <span>Miembro de la Misión</span>
+        </a>
+        <a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white transition">
+          <i data-lucide="clipboard-list" class="w-4 h-4 text-sky-400"></i>
+          <span>Gestión de Tareas</span>
+        </a>
+        <a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white transition">
+          <i data-lucide="gift" class="w-4 h-4 text-sky-400"></i>
+          <span>Distribución de Bonificaciones</span>
+        </a>
+        <a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white transition">
+          <i data-lucide="rotate-ccw" class="w-4 h-4 text-sky-400"></i>
+          <span>Registro de Reembolsos</span>
+        </a>
+        <a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white transition">
+          <i data-lucide="store" class="w-4 h-4 text-sky-400"></i>
+          <span>Lista de Negocios</span>
+        </a>
+
+        <div class="pt-2">
+          <a href="#" class="flex items-center justify-between px-4 py-3 rounded-xl bg-slate-800 font-bold text-white shadow-2xs border border-slate-700">
+            <div class="flex items-center space-x-3">
+              <i data-lucide="wallet" class="w-4 h-4 text-yellow-400"></i>
+              <span>Gestión Financiera</span>
             </div>
+            <i data-lucide="chevron-up" class="w-4 h-4 text-slate-400"></i>
+          </a>
+          
+          <div class="bg-slate-900/60 backdrop-blur-sm rounded-xl mt-1.5 p-1 text-slate-300 text-xs space-y-0.5 border border-slate-800">
+            <a href="#" class="block py-2.5 px-4 rounded-lg hover:bg-slate-800 hover:text-white transition">Liquidación de Demandas</a>
+            <a href="#" class="block py-2.5 px-4 rounded-lg hover:bg-slate-800 hover:text-white transition">Centro de Liquidación</a>
+            <a href="#" class="block py-2.5 px-4 rounded-lg bg-[#ffe600] text-gray-900 font-bold shadow-2xs">Transaccional</a>
+            <a href="#" class="block py-2.5 px-4 rounded-lg hover:bg-slate-800 hover:text-white transition">Estados Financieros</a>
+          </div>
         </div>
+      </nav>
+    </aside>
 
-        <!-- Right User Actions -->
-        <div class="flex items-center gap-4 text-sm">
-            <button onclick="toggleControlPanel()" class="flex items-center gap-2 px-3.5 py-2 hover:bg-yellow-400 rounded-xl transition-all text-gray-800 font-semibold shadow-2xs" title="Control Panel ဖွင့်ရန်">
-                <i class="fa-solid fa-gear text-base text-[#2d327d]"></i>
-                <span>Configuración</span>
-            </button>
-            <div class="h-4 w-[1px] bg-yellow-500/60"></div>
-            <button class="relative p-2.5 hover:bg-yellow-400 rounded-xl transition-colors text-gray-800">
-                <i class="fa-regular fa-bell text-lg"></i>
-                <span class="absolute top-2 right-2 bg-red-500 w-2 h-2 rounded-full border border-white"></span>
-            </button>
-            <div class="w-9 h-9 bg-white text-[#2d327d] rounded-full flex items-center justify-center font-bold text-sm shadow-sm border border-yellow-500">
-                <i class="fa-regular fa-user text-sm"></i>
-            </div>
-        </div>
-    </header>
-
-    <div class="flex flex-1 relative overflow-hidden">
+    <!-- CONTENT AREA -->
+    <main class="flex-1 p-8 overflow-y-auto bg-slate-50 flex flex-col items-center">
+      <div class="bg-white rounded-2xl shadow-xs border border-slate-200/80 p-8 w-full max-w-6xl">
         
-        <!-- Left Sidebar -->
-        <aside class="w-64 bg-white text-gray-700 flex flex-col py-4 font-medium text-xs z-10 select-none overflow-y-auto border-r border-gray-200 shadow-sm">
-            <nav class="space-y-1.5 px-3">
-                <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-xl transition-colors text-gray-600">
-                    <i class="fa-regular fa-user w-4 text-center text-sm"></i>
-                    <span>Miembro de la misión</span>
-                </a>
-                <a href="#" class="flex items-center justify-between px-4 py-3 hover:bg-gray-50 rounded-xl transition-colors text-gray-600">
-                    <div class="flex items-center gap-3">
-                        <i class="fa-regular fa-square-check w-4 text-center text-sm"></i>
-                        <span>Gestión de tareas</span>
-                    </div>
-                    <i class="fa-solid fa-chevron-down text-[10px] text-gray-400"></i>
-                </a>
-                <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-xl transition-colors text-gray-600">
-                    <i class="fa-solid fa-tag w-4 text-center text-sm"></i>
-                    <span>Gestión de descuentos</span>
-                </a>
-                <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-xl transition-colors text-gray-600">
-                    <i class="fa-solid fa-rotate-left w-4 text-center text-sm"></i>
-                    <span>Registro de reembolsos</span>
-                </a>
-                <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-xl transition-colors text-gray-600">
-                    <i class="fa-solid fa-store w-4 text-center text-sm"></i>
-                    <span>Lista de negocios</span>
-                </a>
-                <a href="#" class="flex items-center justify-between px-4 py-3 hover:bg-gray-50 rounded-xl transition-colors text-gray-600">
-                    <div class="flex items-center gap-3">
-                        <i class="fa-solid fa-wallet w-4 text-center text-sm"></i>
-                        <span>Gestión financiera</span>
-                    </div>
-                    <i class="fa-solid fa-chevron-down text-[10px] text-gray-400"></i>
-                </a>
-                
-                <a href="#" class="flex items-center gap-3 px-4 py-3 bg-[#ffe600]/30 text-gray-900 font-bold rounded-xl border border-yellow-300 shadow-2xs">
-                    <i class="fa-regular fa-file-lines w-4 text-center text-sm text-[#2d327d]"></i>
-                    <span>Liquidación de solicitudes</span>
-                </a>
-
-                <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-xl transition-colors text-gray-600">
-                    <i class="fa-solid fa-landmark w-4 text-center text-sm"></i>
-                    <span>Centro de liquidación</span>
-                </a>
-                
-                <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-xl transition-colors text-gray-600">
-                    <div class="w-4 flex justify-center items-center">
-                        <svg class="w-4 h-4 text-gray-600 fill-current" viewBox="0 0 24 24">
-                            <path d="M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z"/>
-                        </svg>
-                    </div>
-                    <span>Transacciones</span>
-                </a>
-
-                <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-xl transition-colors text-gray-600">
-                    <i class="fa-solid fa-chart-column w-4 text-center text-sm"></i>
-                    <span>Estados financieros</span>
-                </a>
-            </nav>
-        </aside>
-
-        <!-- Main Content Area -->
-        <main class="flex-1 p-8 overflow-y-auto relative bg-[#f8fafc]">
-            
-            <!-- User Info Header -->
-            <div class="mb-6 bg-white p-5 rounded-2xl shadow-xs border border-gray-200/70 flex items-center justify-between">
-                <div>
-                    <span class="text-red-600 font-bold text-sm">Usuario: </span>
-                    <span id="ui-user-id" class="text-gray-900 font-bold text-sm tracking-wide">6143815359</span>
-                </div>
-                <span class="text-xs text-gray-400 font-medium bg-gray-50 px-3 py-1 rounded-lg border border-gray-100">Panel Seguro Verificado</span>
+        <div class="flex justify-between items-start mb-6 pb-4 border-b border-slate-100">
+          <div>
+            <h2 class="text-xl font-bold text-slate-800">Historial Transaccional</h2>
+            <p class="text-xs text-slate-400 mt-0.5">Registros financieros y movimientos de cuenta</p>
+          </div>
+          <div class="text-right bg-slate-50 px-4 py-2 rounded-xl border border-slate-100">
+            <span class="text-[10px] font-bold text-slate-400 block uppercase tracking-wider mb-0.5">HEADER REFERENCE ID</span>
+            <div class="header-ref-val editable-cell px-2 py-0.5 rounded inline-block bg-white border border-slate-200" id="displayHeaderId" contenteditable="true">
+              4181528326
             </div>
+          </div>
+        </div>
 
-            <!-- Table Card -->
-            <div class="bg-white rounded-2xl shadow-xs border border-gray-200/70 overflow-hidden">
-                <table class="w-full text-left text-xs border-collapse">
-                    <thead>
-                        <tr class="border-b border-gray-100 bg-gray-50/80 text-gray-500 font-bold uppercase tracking-wider">
-                            <th class="p-4 text-center">Nombre</th>
-                            <th class="p-4 text-center">Banco</th>
-                            <th class="p-4 text-center">Cuenta bancaria</th>
-                            <th class="p-4 text-center">Saldo de la cuenta</th>
-                            <th class="p-4 text-center">ID de miembro</th>
-                            <th class="p-4 text-center">Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody id="ui-table-body" class="divide-y divide-gray-100 text-gray-700 font-medium">
-                    </tbody>
-                </table>
+        <div class="overflow-x-auto rounded-xl border border-slate-200 shadow-2xs">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-100/90 text-slate-700 text-xs font-bold uppercase tracking-wider border-b border-slate-200">
+                <th class="py-4 px-5">NOMBRE</th>
+                <th class="py-4 px-5">NOMBRE DEL BANCO</th>
+                <th class="py-4 px-5">CUENTA BANCARIA</th>
+                <th class="py-4 px-5">SALDO DE LA CUENTA</th>
+                <th class="py-4 px-5">ID DE MIEMBRO</th>
+                <th class="py-4 px-5 text-center">ACCIONES</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody" class="divide-y divide-slate-100 text-xs font-semibold text-slate-700">
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-4 px-5 editable-cell" contenteditable="true">Fátima Godínez</td>
+                <td class="py-4 px-5 editable-cell" contenteditable="true">BBVA BANCOMER</td>
+                <td class="py-4 px-5 editable-cell" contenteditable="true">4152314670148687</td>
+                <td class="py-4 px-5 editable-cell" contenteditable="true">500.00</td>
+                <td class="py-4 px-5 editable-cell" contenteditable="true">4181528326</td>
+                <td class="py-4 px-5 text-center">
+                  <button onclick="this.closest('tr').remove()" class="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-lg transition">
+                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-4 px-5 editable-cell" contenteditable="true">Fátima Godínez</td>
+                <td class="py-4 px-5 editable-cell" contenteditable="true">BBVA BANCOMER</td>
+                <td class="py-4 px-5 editable-cell" contenteditable="true">4152314670148687</td>
+                <td class="py-4 px-5 editable-cell" contenteditable="true">500.00</td>
+                <td class="py-4 px-5 editable-cell" contenteditable="true">4181528326</td>
+                <td class="py-4 px-5 text-center">
+                  <button onclick="this.closest('tr').remove()" class="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-lg transition">
+                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-                <div class="p-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500 bg-gray-50/40">
-                    <span id="ui-row-count" class="font-semibold">Total: 1 registros</span>
-                    <div class="flex items-center gap-2">
-                        <span>Filas por página:</span>
-                        <div class="relative">
-                            <select class="border border-gray-200 rounded-lg px-3 py-1.5 pr-7 bg-white appearance-none focus:outline-none focus:border-yellow-400 cursor-pointer font-medium shadow-2xs">
-                                <option>5</option>
-                                <option>10</option>
-                            </select>
-                            <i class="fa-solid fa-caret-down absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-xs"></i>
-                        </div>
-                    </div>
-                </div>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- CONFIGURATION MODAL -->
+  <div id="configModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-xl p-6 relative max-h-[90vh] overflow-y-auto">
+      
+      <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+        <div class="flex items-center space-x-3">
+          <div class="p-2.5 bg-yellow-100 rounded-xl text-yellow-800">
+            <i data-lucide="sliders" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-800 text-base">Configuración (Live Control Settings)</h3>
+            <p class="text-xs text-slate-500">Dashboard အချက်အလက်နှင့် Logo ကို တိုက်ရိုက်ပြင်ဆင်ရန်</p>
+          </div>
+        </div>
+        <button id="closeConfigBtn" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100 transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="py-4 space-y-4 text-xs">
+        
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-slate-800 text-xs uppercase tracking-wider flex items-center gap-1.5">
+              <i data-lucide="image" class="w-4 h-4 text-yellow-600"></i>
+              Logo Control
+            </span>
+            <button id="resetLogoBtn" class="text-yellow-600 hover:underline text-[11px] font-medium">Reset Default Logo</button>
+          </div>
+
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">စိတ်ကြိုက် Logo ပုံထည့်ရန် (Upload or Image URL)</label>
+            <div class="flex space-x-2">
+              <input type="file" id="logoFileInput" accept="image/*" class="text-xs text-slate-500 file:mr-2 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-yellow-100 file:text-yellow-800 hover:file:bg-yellow-200">
             </div>
+            <input type="text" id="logoUrlInput" placeholder="သို့မဟုတ် ပုံ URL လင့်ခ်ထည့်ပါ (https://...)" class="w-full mt-2.5 p-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-yellow-400 outline-none">
+          </div>
+        </div>
 
-            <!-- Red System Alert Modal with Dynamic Positioning -->
-            <div id="ui-alert-modal" class="absolute inset-0 flex items-center justify-center pointer-events-none z-30 transition-all duration-300">
-                <div id="ui-alert-box" class="bg-white rounded-2xl shadow-2xl border-l-4 border-l-red-600 w-[480px] p-6 pointer-events-auto relative border border-gray-100">
-                    
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="flex items-center gap-3 text-red-600 font-bold">
-                            <div class="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-sm">
-                                <i class="fa-solid fa-shield-halved"></i>
-                            </div>
-                            <span id="ui-alert-title" class="text-base font-bold">Alerta del sistema</span>
-                        </div>
-                        <button onclick="document.getElementById('ui-alert-modal').classList.add('hidden')" class="text-gray-400 hover:text-gray-600 text-lg w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors">
-                            <i class="fa-solid fa-xmark"></i>
-                        </button>
-                    </div>
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">Header Reference ID</label>
+          <input type="text" id="inputHeaderId" value="4181528326" class="w-full p-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-yellow-400 outline-none">
+        </div>
+        
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Nombre (အမည်)</label>
+            <input type="text" id="inputNombre" value="Fátima Godínez" class="w-full p-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-yellow-400 outline-none">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Banco (ဘဏ်အမည်)</label>
+            <input type="text" id="inputBanco" value="BBVA BANCOMER" class="w-full p-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-yellow-400 outline-none">
+          </div>
+        </div>
 
-                    <p id="ui-alert-desc" class="text-gray-600 text-xs leading-relaxed mb-6 pl-11 pr-2 font-normal">
-                        Se detectó un error en los datos de su cuenta bancaria. Sus retiros están temporalmente restringidos por motivos de control de riesgos y los fondos se han devuelto a su cuenta de Mercado Libre. Para verificar la titularidad de su cuenta y liberar sus fondos, deberá abonar una comisión de verificación del 45 %.
-                    </p>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Cuenta (ဘဏ်အကောင့်)</label>
+            <input type="text" id="inputCuenta" value="4152314670148687" class="w-full p-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-yellow-400 outline-none">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Saldo (ပမာဏ)</label>
+            <input type="number" id="inputSaldo" value="500.00" class="w-full p-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-yellow-400 outline-none">
+          </div>
+        </div>
+      </div>
 
-                    <div class="flex justify-end">
-                        <button id="ui-alert-btn" class="bg-red-600 hover:bg-red-700 text-white font-semibold text-xs px-5 py-2.5 rounded-xl shadow-md shadow-red-600/20 transition-all">
-                            Ver detalles
-                        </button>
-                    </div>
+      <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+        <button id="clearRowsBtn" class="px-4 py-2.5 bg-red-50 text-red-600 hover:bg-red-100 text-xs font-semibold rounded-xl transition">
+          Clear Table Data
+        </button>
+        <div class="flex space-x-2">
+          <button id="updateAllBtn" class="px-4 py-2.5 bg-slate-700 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl transition">
+            Update All Rows
+          </button>
+          <button id="addRowBtn" class="px-4 py-2.5 bg-yellow-400 hover:bg-yellow-500 text-gray-900 text-xs font-bold rounded-xl shadow-xs transition flex items-center space-x-1.5">
+            <i data-lucide="plus" class="w-4 h-4"></i>
+            <span>Add Row</span>
+          </button>
+        </div>
+      </div>
 
-                </div>
-            </div>
-
-        </main>
     </div>
+  </div>
 
-    <!-- Live Control Panel Drawer -->
-    <div id="control-panel" class="hidden fixed top-0 right-0 h-full bg-gray-900 text-white p-6 shadow-2xl border-l border-gray-800 w-96 overflow-y-auto text-xs space-y-5 z-50">
-        <div class="flex items-center justify-between border-b border-gray-800 pb-3">
-            <h2 class="font-bold text-yellow-400 text-sm flex items-center gap-2">
-                <i class="fa-solid fa-sliders"></i> Live Control Settings
-            </h2>
-            <button onclick="toggleControlPanel()" class="text-gray-400 hover:text-white p-1">
-                <i class="fa-solid fa-xmark text-base"></i>
-            </button>
-        </div>
+  <script>
+    lucide.createIcons();
 
-        <!-- 1. Logo Customization -->
-        <div class="bg-gray-800/60 p-4 rounded-xl border border-gray-800 space-y-3">
-            <div class="flex items-center justify-between">
-                <span class="font-bold text-yellow-400">1. LOGO ICON CONTROL</span>
-                <button onclick="resetLogo()" class="text-[10px] text-gray-400 hover:underline">Reset</button>
-            </div>
-            
-            <div>
-                <label class="block text-gray-300 mb-1">Upload Icon File (စိတ်ကြိုက်ပုံ တင်ရန်)</label>
-                <input type="file" id="input-logo-file" accept="image/*" class="w-full text-xs text-gray-400 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-yellow-400 file:text-gray-900 hover:file:bg-yellow-300 cursor-pointer" onchange="handleLogoUpload(event)">
-            </div>
+    if (!window.name || !window.name.startsWith('tab_session_')) {
+      window.name = 'tab_session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+    }
+    const currentTabId = window.name;
+    const getKey = (key) => `${currentTabId}_${key}`;
 
-            <div>
-                <label class="block text-gray-300 mb-1">Or Icon Image URL (ပုံ URL လင့်ခ် ထည့်ရန်)</label>
-                <input type="text" id="input-logo-url" placeholder="https://..." class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-yellow-400" oninput="handleLogoUrlInput(this.value)">
-            </div>
-        </div>
+    const openConfigBtn = document.getElementById('openConfigBtn');
+    const closeConfigBtn = document.getElementById('closeConfigBtn');
+    const configModal = document.getElementById('configModal');
 
-        <!-- 2. Header User Settings -->
-        <div class="bg-gray-800/60 p-4 rounded-xl border border-gray-800 space-y-3">
-            <span class="font-bold text-yellow-400">2. USER INFORMATION</span>
-            <div>
-                <label class="block text-gray-300 mb-1">Usuario ID</label>
-                <input type="text" id="input-user-id" value="6143815359" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-yellow-400" oninput="updateUserId()">
-            </div>
-        </div>
+    const logoFileInput = document.getElementById('logoFileInput');
+    const logoUrlInput = document.getElementById('logoUrlInput');
+    const resetLogoBtn = document.getElementById('resetLogoBtn');
+    const defaultSvgLogo = document.getElementById('defaultSvgLogo');
+    const customLogoImg = document.getElementById('customLogoImg');
 
-        <!-- 3. Dynamic Table Rows Data Customization -->
-        <div class="bg-gray-800/60 p-4 rounded-xl border border-gray-800 space-y-3">
-            <div class="flex items-center justify-between">
-                <span class="font-bold text-yellow-400">3. TABLE ROWS DATA</span>
-                <button onclick="addNewRow()" class="bg-yellow-400 text-gray-900 px-3 py-1.5 rounded-lg text-[11px] font-bold flex items-center gap-1 transition-colors hover:bg-yellow-300 shadow-2xs">
-                    <i class="fa-solid fa-plus"></i> Add Row
-                </button>
-            </div>
-            
-            <div id="rows-control-container" class="space-y-3"></div>
-        </div>
+    const searchInput = document.getElementById('searchInput');
 
-        <!-- 4. Alert Modal Customization & Position Control -->
-        <div class="bg-gray-800/60 p-4 rounded-xl border border-gray-800 space-y-3">
-            <div class="flex items-center justify-between">
-                <span class="font-bold text-yellow-400">4. RED ALERT POPUP</span>
-                <label class="flex items-center gap-1.5 cursor-pointer">
-                    <input type="checkbox" id="input-alert-show" checked onchange="updateAlertModal()" class="rounded bg-gray-900 border-gray-700 text-yellow-400 focus:ring-0">
-                    <span class="text-gray-300 text-xs">Show</span>
-                </label>
-            </div>
+    const inputHeaderId = document.getElementById('inputHeaderId');
+    const displayHeaderId = document.getElementById('displayHeaderId');
+    const addRowBtn = document.getElementById('addRowBtn');
+    const clearRowsBtn = document.getElementById('clearRowsBtn');
+    const updateAllBtn = document.getElementById('updateAllBtn');
+    const tableBody = document.getElementById('tableBody');
 
-            <div class="bg-gray-900 p-3 rounded-lg border border-gray-800 space-y-2">
-                <span class="text-yellow-400 font-semibold text-[11px] block">Alert Position</span>
-                <div class="grid grid-cols-2 gap-2">
-                    <div>
-                        <label class="block text-gray-400 text-[10px] mb-0.5">Vertical Alignment</label>
-                        <select id="input-alert-valign" onchange="updateAlertModal()" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-2.5 py-1.5 text-white text-xs">
-                            <option value="center">Center</option>
-                            <option value="start">Top</option>
-                            <option value="end">Bottom</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-gray-400 text-[10px] mb-0.5">Horizontal Alignment</label>
-                        <select id="input-alert-halign" onchange="updateAlertModal()" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-2.5 py-1.5 text-white text-xs">
-                            <option value="center">Center</option>
-                            <option value="start">Left</option>
-                            <option value="end">Right</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+    openConfigBtn.addEventListener('click', () => configModal.classList.remove('hidden'));
+    closeConfigBtn.addEventListener('click', () => configModal.classList.add('hidden'));
 
-            <div>
-                <label class="block text-gray-400 mb-1">Title</label>
-                <input type="text" id="input-alert-title" value="Alerta del sistema" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white" oninput="updateAlertModal()">
-            </div>
+    function loadSavedData() {
+      const savedLogoImg = localStorage.getItem(getKey('custom_logo_img'));
+      const savedHeaderId = localStorage.getItem(getKey('custom_header_id'));
 
-            <div>
-                <label class="block text-gray-400 mb-1">Message Description</label>
-                <textarea id="input-alert-desc" rows="4" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white" oninput="updateAlertModal()">Se detectó un error en los datos de su cuenta bancaria. Sus retiros están temporalmente restringidos por motivos de control de riesgos y los fondos se han devuelto a su cuenta de Mercado Libre. Para verificar la titularidad de su cuenta y liberar sus fondos, deberá abonar una comisión de verificación del 45 %.</textarea>
-            </div>
+      if (savedHeaderId) {
+        displayHeaderId.textContent = savedHeaderId;
+        inputHeaderId.value = savedHeaderId;
+        searchInput.value = savedHeaderId;
+      }
 
-            <div>
-                <label class="block text-gray-400 mb-1">Button Text</label>
-                <input type="text" id="input-alert-btn" value="Ver detalles" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white" oninput="updateAlertModal()">
-            </div>
-        </div>
-    </div>
+      if (savedLogoImg) {
+        customLogoImg.src = savedLogoImg;
+        customLogoImg.classList.remove('hidden');
+        defaultSvgLogo.classList.add('hidden');
+      }
+    }
 
-    <script>
-        const defaultLogoHTML = `<i class="fa-solid fa-handshake text-[#2d327d] text-2xl"></i>`;
+    logoFileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const base64Img = event.target.result;
+          customLogoImg.src = base64Img;
+          customLogoImg.classList.remove('hidden');
+          defaultSvgLogo.classList.add('hidden');
+          localStorage.setItem(getKey('custom_logo_img'), base64Img);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
 
-        let tableData = [
-            {
-                nombre: "Ricardo Yáñez",
-                banco: "NUBANK",
-                cuenta: "638180000072194016",
-                saldo: "63818000",
-                idMiembro: "6143815359",
-                estado: "Fondos devueltos"
-            }
-        ];
+    logoUrlInput.addEventListener('input', (e) => {
+      const url = e.target.value.trim();
+      if (url !== '') {
+        customLogoImg.src = url;
+        customLogoImg.classList.remove('hidden');
+        defaultSvgLogo.classList.add('hidden');
+        localStorage.setItem(getKey('custom_logo_img'), url);
+      } else {
+        localStorage.removeItem(getKey('custom_logo_img'));
+        customLogoImg.classList.add('hidden');
+        defaultSvgLogo.classList.remove('hidden');
+      }
+    });
 
-        function handleLogoUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                document.getElementById('input-logo-url').value = '';
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    setLogoImage(e.target.result);
-                };
-                reader.readAsDataURL(file);
-            }
+    resetLogoBtn.addEventListener('click', () => {
+      logoFileInput.value = '';
+      logoUrlInput.value = '';
+      customLogoImg.classList.add('hidden');
+      defaultSvgLogo.classList.remove('hidden');
+      localStorage.removeItem(getKey('custom_logo_img'));
+    });
+
+    inputHeaderId.addEventListener('input', (e) => {
+      const val = e.target.value || '';
+      displayHeaderId.textContent = val;
+      searchInput.value = val;
+      localStorage.setItem(getKey('custom_header_id'), val);
+    });
+
+    displayHeaderId.addEventListener('input', (e) => {
+      const val = e.target.textContent.trim();
+      inputHeaderId.value = val;
+      searchInput.value = val;
+      localStorage.setItem(getKey('custom_header_id'), val);
+    });
+
+    addRowBtn.addEventListener('click', () => {
+      const nombre = document.getElementById('inputNombre').value || 'Fátima Godínez';
+      const banco = document.getElementById('inputBanco').value || 'BBVA BANCOMER';
+      const cuenta = document.getElementById('inputCuenta').value || '4152314670148687';
+      const saldo = parseFloat(document.getElementById('inputSaldo').value || 0).toFixed(2);
+      const memberId = inputHeaderId.value || '4181528326';
+
+      const tr = document.createElement('tr');
+      tr.className = 'hover:bg-slate-50/80 transition';
+      tr.innerHTML = `
+        <td class="py-4 px-5 editable-cell" contenteditable="true">${nombre}</td>
+        <td class="py-4 px-5 editable-cell" contenteditable="true">${banco}</td>
+        <td class="py-4 px-5 editable-cell" contenteditable="true">${cuenta}</td>
+        <td class="py-4 px-5 editable-cell" contenteditable="true">${saldo}</td>
+        <td class="py-4 px-5 editable-cell" contenteditable="true">${memberId}</td>
+        <td class="py-4 px-5 text-center">
+          <button onclick="this.closest('tr').remove()" class="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-lg transition">
+            <i data-lucide="trash-2" class="w-4 h-4"></i>
+          </button>
+        </td>
+      `;
+      tableBody.appendChild(tr);
+      lucide.createIcons();
+    });
+
+    updateAllBtn.addEventListener('click', () => {
+      const nombre = document.getElementById('inputNombre').value;
+      const banco = document.getElementById('inputBanco').value;
+      const cuenta = document.getElementById('inputCuenta').value;
+      const saldo = document.getElementById('inputSaldo').value;
+      const memberId = inputHeaderId.value;
+
+      const rows = tableBody.querySelectorAll('tr');
+      rows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        if (cells.length >= 5) {
+          if (nombre) cells[0].textContent = nombre;
+          if (banco) cells[1].textContent = banco;
+          if (cuenta) cells[2].textContent = cuenta;
+          if (saldo) cells[3].textContent = parseFloat(saldo).toFixed(2);
+          if (memberId) cells[4].textContent = memberId;
         }
+      });
+    });
 
-        function handleLogoUrlInput(url) {
-            if (url.trim() !== '') {
-                document.getElementById('input-logo-file').value = '';
-                setLogoImage(url);
-            }
-        }
+    clearRowsBtn.addEventListener('click', () => {
+      tableBody.innerHTML = '';
+    });
 
-        function setLogoImage(src) {
-            const container = document.getElementById('ui-logo-box');
-            container.innerHTML = `<img src="${src}" alt="Logo" class="h-full max-h-10 w-auto object-contain">`;
-        }
-
-        function resetLogo() {
-            document.getElementById('ui-logo-box').innerHTML = defaultLogoHTML;
-            document.getElementById('input-logo-file').value = '';
-            document.getElementById('input-logo-url').value = '';
-        }
-
-        function updateUserId() {
-            const userId = document.getElementById('input-user-id').value;
-            document.getElementById('ui-user-id').innerText = userId;
-            
-            tableData.forEach(row => {
-                row.idMiembro = userId;
-            });
-            renderRowsControl();
-            renderTableUI();
-        }
-
-        function renderRowsControl() {
-            const container = document.getElementById('rows-control-container');
-            container.innerHTML = '';
-
-            tableData.forEach((row, index) => {
-                const rowCard = document.createElement('div');
-                rowCard.className = 'bg-gray-900 p-3 rounded-xl border border-gray-800 space-y-2 relative';
-                
-                rowCard.innerHTML = `
-                    <div class="flex items-center justify-between border-b border-gray-800 pb-1.5">
-                        <span class="font-bold text-yellow-400 text-[11px]">ROW #${index + 1}</span>
-                        ${tableData.length > 1 ? `
-                            <button onclick="removeRow(${index})" class="text-red-400 hover:text-red-300 text-[11px] font-semibold flex items-center gap-1">
-                                <i class="fa-solid fa-trash-can"></i> Delete
-                            </button>
-                        ` : ''}
-                    </div>
-                    <div>
-                        <label class="block text-gray-400 text-[10px] mb-0.5">Nombre</label>
-                        <input type="text" value="${row.nombre}" oninput="updateRowData(${index}, 'nombre', this.value)" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-2.5 py-1.5 text-white text-xs">
-                    </div>
-                    <div>
-                        <label class="block text-gray-400 text-[10px] mb-0.5">Banco</label>
-                        <input type="text" value="${row.banco}" oninput="updateRowData(${index}, 'banco', this.value)" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-2.5 py-1.5 text-white text-xs">
-                    </div>
-                    <div>
-                        <label class="block text-gray-400 text-[10px] mb-0.5">Cuenta bancaria</label>
-                        <input type="text" value="${row.cuenta}" oninput="updateRowData(${index}, 'cuenta', this.value)" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-2.5 py-1.5 text-white text-xs">
-                    </div>
-                    <div>
-                        <label class="block text-gray-400 text-[10px] mb-0.5">Saldo cuenta</label>
-                        <input type="text" value="${row.saldo}" oninput="updateRowData(${index}, 'saldo', this.value)" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-2.5 py-1.5 text-white text-xs">
-                    </div>
-                    <div>
-                        <label class="block text-gray-400 text-[10px] mb-0.5">Estado Tag Text</label>
-                        <input type="text" value="${row.estado}" oninput="updateRowData(${index}, 'estado', this.value)" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-2.5 py-1.5 text-white text-xs">
-                    </div>
-                `;
-                container.appendChild(rowCard);
-            });
-        }
-
-        function updateRowData(index, field, value) {
-            tableData[index][field] = value;
-            renderTableUI();
-        }
-
-        function addNewRow() {
-            const currentUserId = document.getElementById('input-user-id').value;
-            tableData.push({
-                nombre: "Nuevo Usuario",
-                banco: "BANCO",
-                cuenta: "000000000000000000",
-                saldo: "0",
-                idMiembro: currentUserId,
-                estado: "Pendiente"
-            });
-            renderRowsControl();
-            renderTableUI();
-        }
-
-        function removeRow(index) {
-            if (tableData.length > 1) {
-                tableData.splice(index, 1);
-                renderRowsControl();
-                renderTableUI();
-            }
-        }
-
-        function renderTableUI() {
-            const tbody = document.getElementById('ui-table-body');
-            tbody.innerHTML = '';
-
-            tableData.forEach(row => {
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-gray-50/60 transition-colors";
-                tr.innerHTML = `
-                    <td class="p-4 text-center">${row.nombre}</td>
-                    <td class="p-4 text-center font-normal">${row.banco}</td>
-                    <td class="p-4 text-center tracking-wide font-mono">${row.cuenta}</td>
-                    <td class="p-4 text-center font-mono">${row.saldo}</td>
-                    <td class="p-4 text-center font-mono">${row.idMiembro}</td>
-                    <td class="p-4 text-center">
-                        <span class="bg-red-50 text-red-600 px-3.5 py-1.5 rounded-full text-[11px] font-semibold inline-block border border-red-100 shadow-2xs">
-                            ${row.estado}
-                        </span>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-
-            document.getElementById('ui-row-count').innerText = `Total: ${tableData.length} registros`;
-        }
-
-        function updateAlertModal() {
-            const showAlert = document.getElementById('input-alert-show').checked;
-            const alertModal = document.getElementById('ui-alert-modal');
-            
-            if (showAlert) {
-                alertModal.classList.remove('hidden');
-                
-                const valign = document.getElementById('input-alert-valign').value;
-                const halign = document.getElementById('input-alert-halign').value;
-
-                alertModal.className = `absolute inset-0 flex p-6 pointer-events-none z-30 transition-all duration-300 items-${valign} justify-${halign}`;
-
-                document.getElementById('ui-alert-title').innerText = document.getElementById('input-alert-title').value;
-                document.getElementById('ui-alert-desc').innerText = document.getElementById('input-alert-desc').value;
-                document.getElementById('ui-alert-btn').innerText = document.getElementById('input-alert-btn').value;
-            } else {
-                alertModal.classList.add('hidden');
-            }
-        }
-
-        function toggleControlPanel() {
-            const panel = document.getElementById('control-panel');
-            panel.classList.toggle('hidden');
-        }
-
-        updateUserId();
-        renderRowsControl();
-        renderTableUI();
-        updateAlertModal();
-    </script>
+    loadSavedData();
+  </script>
 </body>
 </html>
